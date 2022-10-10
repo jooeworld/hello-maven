@@ -1,7 +1,3 @@
-// def scannerHome = '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/ibt-sonarqube';
-// def scannerHome = tool 'ibt-sonarqube';
-//def scannerHome = tool name: 'ibt-sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
-
 pipeline {
     agent any 
     stages {  
