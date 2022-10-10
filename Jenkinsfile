@@ -10,16 +10,16 @@ pipeline {
         }
         stage('Push package to Registry') {
             def remote = [:]
-            remote.name = "tomcat-dev"
-            remote.host = "68.183.51.116"
-            remote.allowAnyHosts = true
+//             remote.name = "tomcat-dev"
+//             remote.host = "68.183.51.116"
+//             remote.allowAnyHosts = true
             steps {
                 echo "mvn deploy"
             }
         }
         stage('Perform Dynamic code analysis') { 
 //             withCredentials([sshUserPrivateKey(credentialsId: "yourkeyid", keyFileVariable: 'keyfile')]) {
-               sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapp/'
+//                sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapp/'
 //            }
         }
     }
