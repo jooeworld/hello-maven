@@ -17,9 +17,11 @@ pipeline {
         }
         stage('Perform Dynamic code analysis') { 
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: "vm-ssh", keyFileVariable: 'identity')]) {
-                   remote.identityFile = identity
-                   sshPut remote: remote, from: 'target/hello-maven-1.0-SNAPSHOT.war', into: '/opt/tomcat10/webapps/'
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: "vm-ssh", keyFileVariable: 'identity')]) {
+                       remote.identityFile = identity
+                       sshPut remote: remote, from: 'target/hello-maven-1.0-SNAPSHOT.war', into: '/opt/tomcat10/webapps/'
+                    }
                 }
             }
         }
