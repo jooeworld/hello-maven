@@ -21,7 +21,8 @@ pipeline {
                 def scannerHome = tool 'SonarScanner 4.0';
                 withSonarQubeEnv('ibt-sonarqube') { 
                   sh "${scannerHome}/bin/sonar-scanner"
-                        }
+                }
+            }
         }
         stage('Push package to Registry') { 
             steps {
