@@ -1,4 +1,4 @@
-def remote = [name: 'tomcat-dev', host: '68.183.51.116', allowAnyHosts: true]
+def remote = [name: 'tomcat-dev', host: '68.183.51.116', user: 'root', allowAnyHosts: true]
 pipeline {
     agent any 
 
