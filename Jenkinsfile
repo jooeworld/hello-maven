@@ -1,3 +1,4 @@
+def scannerHome = '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/ibt-sonarqube';
 pipeline {
     agent any 
     stages {  
@@ -23,7 +24,8 @@ pipeline {
 //                   sh "${scannerHome}/bin/sonar-scanner"
 //                 }
                 withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
-                sh 'mvn clean package sonar:sonar -X'
+//                 sh 'mvn clean package sonar:sonar -X'
+                sh "${scannerHome}/bin/sonar-scanner"
               }
             }
         }
