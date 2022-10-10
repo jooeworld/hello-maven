@@ -23,7 +23,7 @@ pipeline {
 //                   sh "${scannerHome}/bin/sonar-scanner"
 //                 }
                 withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
-                sh 'mvn clean package sonar:sonar -Dsonar.login=sqa_bf4459be6b163e8fefe9b6bf4481e660de996459'
+                sh 'mvn clean package sonar:sonar -Dsonar.host.url=https://sonarqube.ibtlearning.co  -Dsonar.login=sqa_bf4459be6b163e8fefe9b6bf4481e660de996459'
               }
             }
         }
