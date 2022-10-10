@@ -1,10 +1,10 @@
 pipeline {
     agent any 
     stages {  
-        when {
-            branch 'feature/*'
-        }
         stage('Vadidate mavn project') { 
+            when {
+                branch 'feature/*'
+            }
             steps {
                 sh "mvn validate"
             }
