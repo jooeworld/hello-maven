@@ -1,3 +1,4 @@
+@Library('jenkins-library')_
 pipeline {
     agent any 
 
@@ -16,6 +17,7 @@ pipeline {
         stage('Perform Dynamic code analysis') { 
             steps {
                 script {
+                    deploy()
                     def remote = [name: 'tomcat-dev', host: '68.183.51.116', user: 'root', allowAnyHosts: true]
                     withCredentials([sshUserPrivateKey(credentialsId: "vm-ssh", keyFileVariable: 'identity')]) {
                        remote.identityFile = identity
