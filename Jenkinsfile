@@ -3,29 +3,24 @@ def scannerHome = tool 'SonarScanner 4.0';
 pipeline {
     agent any 
     stages {  
-//         stage('Vadidate mavn project') { 
-//             steps {
-//                 sh "mvn validate"
-//             }
-//         }
-//         stage('Run maven test') { 
-//             steps {
-//                 sh "mvn test"
-//             }
-//         }
-//         stage('Run clean install') { 
-//             steps {
-//                 echo "Unit Test Complete"
-//             }
-//         }
+        stage('Vadidate mavn project') { 
+            steps {
+                sh "mvn validate"
+            }
+        }
+        stage('Run maven test') { 
+            steps {
+                sh "mvn test"
+            }
+        }
+        stage('Run clean install') { 
+            steps {
+                echo "Unit Test Complete"
+            }
+        }
         stage('Sonarqube test') { 
             steps {
-//                 def scannerHome = tool 'SonarScanner 4.0';
-//                 withSonarQubeEnv('ibt-sonarqube') { 
-//                   sh "${scannerHome}/bin/sonar-scanner"
-//                 }
                 withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
-//                 sh 'mvn clean package sonar:sonar -X'
                 sh "${scannerHome}/bin/sonar-scanner"
               }
             }
