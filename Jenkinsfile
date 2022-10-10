@@ -6,16 +6,12 @@ pipeline {
         
         stage('mvn install') { 
             steps {
-                echo "mvn clean install"
+                sh "mvn clean install"
             }
         }
         stage('Push package to Registry') {
-//             def remote = [:]
-//             remote.name = "tomcat-dev"
-//             remote.host = "68.183.51.116"
-//             remote.allowAnyHosts = true
             steps {
-                echo "mvn deploy"
+                sh "mvn deploy"
             }
         }
         stage('Perform Dynamic code analysis') { 
