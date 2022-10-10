@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Push package to Registry') {
             steps {
-                sh "mvn deploy"
+                echo "mvn deploy"
             }
         }
         stage('Perform Dynamic code analysis') { 
