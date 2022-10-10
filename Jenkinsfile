@@ -22,7 +22,7 @@ pipeline {
 //                 withSonarQubeEnv('ibt-sonarqube') { 
 //                   sh "${scannerHome}/bin/sonar-scanner"
 //                 }
-                withSonarQubeEnv('ibt-sonarqube') {
+                withSonarQubeEnv('IBT sonarqube') {
                 sh 'mvn clean package sonar:sonar'
               }
             }
