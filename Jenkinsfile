@@ -1,9 +1,5 @@
 pipeline {
     agent any 
-    def remote = [:]
-    remote.name = "tomcat-dev"
-    remote.host = "68.183.51.116"
-    remote.allowAnyHosts = true
 
     stages {
         
@@ -12,14 +8,20 @@ pipeline {
                 echo "mvn clean install"
             }
         }
-        stage('Push package to Registry') { 
+        stage('Push package to Registry') {
+            environment {
+                remote = [:]
+                remote.name = "tomcat-dev"
+                remote.host = "68.183.51.116"
+                remote.allowAnyHosts = true
+            }
             steps {
                 echo "mvn deploy"
             }
         }
         stage('Perform Dynamic code analysis') { 
 //             withCredentials([sshUserPrivateKey(credentialsId: "yourkeyid", keyFileVariable: 'keyfile')]) {
-               sshPut remote: remote, from: 'target/*.war', into: '/opt/tomcat10/webapp/'
+               sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapp/'
 //            }
         }
     }
