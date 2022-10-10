@@ -22,7 +22,7 @@ pipeline {
 //                 withSonarQubeEnv('ibt-sonarqube') { 
 //                   sh "${scannerHome}/bin/sonar-scanner"
 //                 }
-                withSonarQubeEnv('IBT sonarqube') {
+                withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
                 sh 'mvn clean package sonar:sonar'
               }
             }
