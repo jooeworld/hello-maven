@@ -9,12 +9,7 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-        stage('Push package to Registry') {
-            steps {
-                echo "mvn deploy"
-            }
-        }
-        stage('Perform Dynamic code analysis') { 
+        stage('Deploy using Jenkins Library') { 
             steps {
                 script {
                     deployTomcat()
