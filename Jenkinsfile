@@ -1,4 +1,4 @@
-def remote = [name: 'tomcat-dev', host: '68.183.51.116', user: 'root', allowAnyHosts: true]
+def remote = [name: 'tomcat-dev', host: '68.183.51.116', user: 'root', identityFile: identity, allowAnyHosts: true]
 pipeline {
     agent any 
 
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Perform Dynamic code analysis') { 
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: "vm-ssh", keyFileVariable: 'id_rsa')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: "vm-ssh", keyFileVariable: 'identity')]) {
                    sshPut remote: remote, from: 'target/hello-maven-1.0-SNAPSHOT.war', into: '/opt/tomcat10/webapps/'
                 }
             }
