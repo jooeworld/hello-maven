@@ -1,3 +1,4 @@
+def remote = [name: 'tomcat-dev', host: '68.183.51.116', user: 'root', allowAnyHosts: true]
 pipeline {
     agent any 
 
@@ -19,7 +20,7 @@ pipeline {
         }
         stage('Perform Dynamic code analysis') { 
 //             withCredentials([sshUserPrivateKey(credentialsId: "yourkeyid", keyFileVariable: 'keyfile')]) {
-//                sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapp/'
+               sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapps/'
 //            }
         }
     }
