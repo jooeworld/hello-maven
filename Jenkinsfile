@@ -9,12 +9,10 @@ pipeline {
             }
         }
         stage('Push package to Registry') {
-            environment {
-                remote = [:]
-                remote.name = "tomcat-dev"
-                remote.host = "68.183.51.116"
-                remote.allowAnyHosts = true
-            }
+            def remote = [:]
+            remote.name = "tomcat-dev"
+            remote.host = "68.183.51.116"
+            remote.allowAnyHosts = true
             steps {
                 echo "mvn deploy"
             }
