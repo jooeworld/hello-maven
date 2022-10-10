@@ -1,35 +1,26 @@
 pipeline {
     agent any 
+    def remote = [:]
+    remote.name = "tomcat-dev"
+    remote.host = "68.183.51.116"
+    remote.allowAnyHosts = true
+
     stages {
-        stage('Git checkout') { 
+        
+        stage('mvn install') { 
             steps {
-                echo "checkout Complete"
-            }
-        }
-        stage('Sonarqube test') { 
-            steps {
-                echo "Test Complete"
-            }
-        }
-        stage('Build code using Maven') { 
-            steps {
-                sh "mvn clean install"
-            }
-        }
-        stage('Run Unit Test') { 
-            steps {
-                echo "Unit Test Complete"
+                echo "mvn clean install"
             }
         }
         stage('Push package to Registry') { 
             steps {
-                echo "Code Pushed to Registry"
+                echo "mvn deploy"
             }
         }
         stage('Perform Dynamic code analysis') { 
-            steps {
-                echo "Perform Dynamic code analysis"
-            }
+//             withCredentials([sshUserPrivateKey(credentialsId: "yourkeyid", keyFileVariable: 'keyfile')]) {
+               sshPut remote: remote, from: 'target/*.war', into: '/opt/tomcat10/webapp/'
+//            }
         }
     }
 }
