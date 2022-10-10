@@ -1,24 +1,26 @@
 pipeline {
     agent any 
-    stages {
-        stage('Git checkout') { 
+    stages {  
+        stage('Vadidate mavn project') { 
             steps {
-                echo "checkout Complete"
+                sh "mvn validate"
+            }
+        }
+        stage('Run maven test') { 
+            steps {
+                sh "mvn test"
+            }
+        }
+        stage('Run clean install') { 
+            steps {
+                echo "Unit Test Complete"
             }
         }
         stage('Sonarqube test') { 
             steps {
-                echo "Test Complete"
-            }
-        }
-        stage('Build code using Maven') { 
-            steps {
-                sh "mvn clean install"
-            }
-        }
-        stage('Run Unit Test') { 
-            steps {
-                echo "Unit Test Complete"
+                def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv(ibt-sonarqube') { // If you have configured more than one global server connection, you can specify its name
+      sh "${scannerHome}/bin/sonar-scanner"
             }
         }
         stage('Push package to Registry') { 
