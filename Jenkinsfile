@@ -9,7 +9,7 @@ pipeline {
             }
         }
         stage('Push package to Registry') {
-            def remote = [:]
+//             def remote = [:]
 //             remote.name = "tomcat-dev"
 //             remote.host = "68.183.51.116"
 //             remote.allowAnyHosts = true
