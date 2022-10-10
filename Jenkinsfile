@@ -1,6 +1,6 @@
 // def scannerHome = '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/ibt-sonarqube';
 // def scannerHome = tool 'ibt-sonarqube';
-def scannerHome = tool name: 'ibt-sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
+//def scannerHome = tool name: 'ibt-sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
 
 pipeline {
     agent any 
@@ -21,6 +21,9 @@ pipeline {
             }
         }
         stage('Sonarqube test') { 
+            environment {
+               scannerHome = tool 'ibt-sonarqube';
+            }
             steps {
                 withSonarQubeEnv(credentialsId: 'SQ-student', installationName: 'IBT sonarqube') {
                 sh "${scannerHome}/bin/sonar-scanner"
