@@ -19,9 +19,11 @@ pipeline {
             }
         }
         stage('Perform Dynamic code analysis') { 
-//             withCredentials([sshUserPrivateKey(credentialsId: "yourkeyid", keyFileVariable: 'keyfile')]) {
-               sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapps/'
-//            }
+            steps {
+//                 withCredentials([sshUserPrivateKey(credentialsId: "yourkeyid", keyFileVariable: 'keyfile')]) {
+                   sshPut remote: $remote, from: 'target/*.war', into: '/opt/tomcat10/webapps/'
+//                 }
+            }
         }
     }
 }
