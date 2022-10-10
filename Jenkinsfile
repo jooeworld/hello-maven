@@ -8,12 +8,7 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-        stage('Push package to Registry') {
-            steps {
-                echo "mvn deploy"
-            }
-        }
-        stage('Perform Dynamic code analysis') { 
+        stage('Deploy code') { 
             steps {
                 script {
                     def remote = [name: 'tomcat-dev', host: '68.183.51.116', user: 'root', allowAnyHosts: true]
