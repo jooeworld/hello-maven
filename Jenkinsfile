@@ -13,9 +13,10 @@ pipeline {
         }
         stage('Run clean install') { 
             steps {
-                echo "Unit Test Complete"
+                sh "mvn clean install"
             }
         }
+        // Running sonarqube
         stage('Sonarqube test') { 
             environment {
                scannerHome = tool 'ibt-sonarqube';
