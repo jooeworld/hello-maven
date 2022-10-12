@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
+    public tatic void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
 
