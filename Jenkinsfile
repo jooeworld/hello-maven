@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Run maven test') { 
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh "mvn test"
                 }
                 
