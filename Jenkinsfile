@@ -18,5 +18,14 @@ pipeline {
                 }
             }
         }
+        stage('Test Blasie Deploy Script') { 
+            steps {
+                script {
+                    
+                    deploy()
+                    
+                }
+            }
+        }
     }
 }
