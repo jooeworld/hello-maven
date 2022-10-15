@@ -3,11 +3,11 @@ pipeline {
 
     stages {
         
-//         stage('mvn install') { 
-//             steps {
-//                 sh "mvn clean install"
-//             }
-//         }
+        stage('mvn install') { 
+            steps {
+                sh "mvn clean install"
+            }
+        }
         stage('Deploy code') { 
             steps {
                 script {
