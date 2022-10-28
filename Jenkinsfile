@@ -58,8 +58,7 @@ pipeline {
                         inventory: 'ansible/hosts',
                         credentialsId: 'vm-ssh',
                         colorized: true
-                        )
-                    }
+                    )
                 }
             }
         }
