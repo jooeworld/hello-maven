@@ -2,13 +2,13 @@ pipeline {
     agent any
     stages {
         // validate the code
-        stage('Build maven project') {
+        stage('Validate maven project') {
             steps {
               sh 'mvn validate'
             }
         }
         // Run unit test
-        stage('Build maven project') {
+        stage('Run Unit Test') {
             steps {
               sh 'mvn test'
             }
@@ -20,7 +20,7 @@ pipeline {
             }
         }
         // run sonarqube test
-        stage('Build maven project') {
+        stage('Run Sonarqube') {
             environment {
                 scannerHome = tool 'ibt-sonarqube';
             }
