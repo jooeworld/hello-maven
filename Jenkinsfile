@@ -50,5 +50,18 @@ pipeline {
                 }
             }
         }
+        stage('Configure our VM(s)') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    ansiblePlaybook(
+                        playbook: 'ansible/tomcat.yaml',
+                        inventory: 'ansible/hosts',
+                        credentialsId: 'vm-ssh',
+                        colorized: true
+                        )
+                    }
+                }
+            }
+        }
     }
 }
