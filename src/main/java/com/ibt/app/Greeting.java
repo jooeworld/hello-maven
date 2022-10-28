@@ -11,7 +11,7 @@ public class Greeting {
     @GetMapping("/hello")
     // Easy method just to print encouraging and consoling words
     public String hello() {
-        return "Hello IBT, this is a simple hello message to take care and have a nice day.";
+        return "Hello Jashan, this is a simple hello message to take care and have a nice day.";
     }
 
     @GetMapping("/greet")
