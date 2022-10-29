@@ -82,7 +82,7 @@ pipeline {
         stage('Approval to Deploy to PROD') {
             steps{
                 input message: 'Ready to Deploy to Prod',
-                      submitter: 'ibt-admin'
+                      submitter: 'ibt-admin, ooghenekaro'
             }
         }
         stage('Deploy to PROD') {
