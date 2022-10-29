@@ -81,7 +81,8 @@ pipeline {
 //         }
         stage('Approval to Deploy to PROD') {
             steps{
-                input message: 'Ready to Deploy to Prod'
+                input message: 'Ready to Deploy to Prod',
+                      submitter: 'ibt-admin'
             }
         }
         stage('Deploy to PROD') {
