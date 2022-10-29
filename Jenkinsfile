@@ -78,8 +78,20 @@ pipeline {
                     ]
                 )
             }
-
         }
-
+        stage('Deploy to PROD') {
+            steps {
+                ansiblePlaybook(
+                    playbook: 'ansible/deploy-war.yaml',
+                    inventory: 'ansible/hosts',
+                    credentialsId: 'vm-ssh',
+                    colorized: true,
+                    extraVars: [
+                        "myHosts" : "prodServer",
+                        "artifact": "${WORKSPACE}/target/hello-maven-1.0-SNAPSHOT.war"
+                    ]
+                )
+            }
+        }
     }
 }
