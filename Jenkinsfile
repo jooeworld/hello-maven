@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options {
-        timeout(time: 15, unit: 'MINUTES')
+        timeout(time: 10, unit: 'MINUTES')
     }
     stages {
         // validate the code
@@ -65,39 +65,3 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to DEV') {
-            steps {
-                ansiblePlaybook(
-                    playbook: 'ansible/deploy-war.yaml',
-                    inventory: 'ansible/hosts',
-                    credentialsId: 'vm-ssh',
-                    colorized: true,
-                    extraVars: [
-                        "myHosts" : "devServer",
-                        "artifact": "${WORKSPACE}/target/hello-maven-1.0-SNAPSHOT.war"
-                    ]
-                )
-            }
-        }
-        stage('Approval to Deploy to PROD') {
-            steps{
-                input message: 'Ready to Deploy to Prod',
-                      submitter: 'ibt-admin, ooghenekaro'
-            }
-        }
-        stage('Deploy to PROD') {
-            steps {
-                ansiblePlaybook(
-                    playbook: 'ansible/deploy-war.yaml',
-                    inventory: 'ansible/hosts',
-                    credentialsId: 'vm-ssh',
-                    colorized: true,
-                    extraVars: [
-                        "myHosts" : "prodServer",
-                        "artifact": "${WORKSPACE}/target/hello-maven-1.0-SNAPSHOT.war"
-                    ]
-                )
-            }
-        }
-    }
-}
